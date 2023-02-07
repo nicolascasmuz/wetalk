@@ -2,7 +2,7 @@
   "name": "rooms-m6",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "source": "client/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:front": "parcel serve --port 7070 ./client/index.html",
