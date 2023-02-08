@@ -23,7 +23,7 @@
   "scripts": {
     "dev:front": "parcel serve ./client/index.html",
     "dev:back": "nodemon --watch ./server/index.ts --exec ts-node ./server/dev.ts",
-    "build:front": "parcel build ./client/index.html",
+    "build:front": "npx parcel build ./client/index.html",
     "build:back": "tsc",
     "build": "npm run build:front && npm run build:back",
     "start": "node ./server/index.js"
