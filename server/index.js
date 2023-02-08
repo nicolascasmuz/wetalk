@@ -2,14 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("./db");
 const express = require("express");
+const process = require("process");
 const nanoid_1 = require("nanoid");
 const cors = require("cors");
-const port = 3000;
 const app = express();
+const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 const usersCollection = db_1.firestore.collection("users");
 const roomsCollection = db_1.firestore.collection("rooms");
+app.get("/env", (req, res) => {
+    res.json({
+        environment: process.env.ENV,
+    });
+});
 // post auth
 app.post("/auth", (req, res) => {
     const { email } = req.body;
@@ -137,6 +143,10 @@ app.delete("/deleteroom", (req, res) => {
         res.json("Error removing document");
         console.error("Error removing document: ", error);
     });
+});
+app.use(express.static("dist"));
+app.get("*", (req, res) => {
+    res.sendFile(__dirname + "/dist/index.html");
 });
 // SETEA EL PUERTO
 app.listen(port, () => {

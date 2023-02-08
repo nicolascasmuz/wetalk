@@ -1,16 +1,23 @@
 import { rtdb, firestore } from "./db";
 import * as express from "express";
+import * as process from "process";
 import { nanoid } from "nanoid";
 import * as cors from "cors";
 
-const port = 3000;
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
 
 const usersCollection = firestore.collection("users");
 const roomsCollection = firestore.collection("rooms");
+
+app.get("/env", (req, res) => {
+  res.json({
+    environment: process.env.ENV,
+  });
+});
 
 // post auth
 app.post("/auth", (req, res) => {
@@ -149,6 +156,12 @@ app.delete("/deleteroom", (req, res) => {
       res.json("Error removing document");
       console.error("Error removing document: ", error);
     });
+});
+
+app.use(express.static("dist"));
+
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/dist/index.html");
 });
 
 // SETEA EL PUERTO
