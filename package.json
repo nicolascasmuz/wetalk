@@ -1,19 +1,7 @@
 {
   "name": "rooms-m6",
-  "version": "1.0.0",
-  "description": "",
-  "source": "client/index.html",
   "type": "commonjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:front": "parcel serve --port 7070 ./client/index.html",
-    "dev:back": "nodemon --watch ./server/index.ts --exec ts-node ./server/index.ts",
-    "build:front": "parcel build ./client/index.html",
-    "build:back": "tsc",
-    "start": "node ./server/index.js"
-  },
-  "keywords": [],
-  "author": "",
+  "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
     "@types/node": "^18.6.4",
@@ -31,6 +19,14 @@
     "package.json": "^2.0.1",
     "parcel": "^2.0.0-rc.0",
     "uuid": "^9.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:front": "parcel serve --port 7070 ./client/index.html",
+    "dev:back": "nodemon --watch ./server/index.ts --exec ts-node ./server/index.ts",
+    "build:front": "parcel build ./client/index.html",
+    "build:back": "tsc",
+    "start": "node ./server/index.js"
   },
   "devDependencies": {
     "process": "^0.11.10",
