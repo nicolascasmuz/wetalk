@@ -132,16 +132,6 @@ app.post("/messages", (req, res) => {
     .then((r) => res.json(r));
 });
 
-/* // get messages
-app.get("/rooms/messages/:roomId", function (req, res) {
-  const roomId = req.params.roomId;
-
-  var roomRef = rtdb.ref("rooms/" + roomId + "/messages");
-  roomRef.on("value", (snapshot) => {
-    return snapshot.val();
-  });
-}); */
-
 app.delete("/deleteroom", (req, res) => {
   const { roomId } = req.body;
 
@@ -167,4 +157,6 @@ app.get("*", (req, res) => {
 // SETEA EL PUERTO
 app.listen(port, () => {
   console.log(`iniciado en http://localhost:${port}`);
+  console.log(process.env.ENV);
+  console.log(process.env.PORT);
 });
