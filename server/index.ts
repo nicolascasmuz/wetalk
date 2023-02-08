@@ -1,8 +1,9 @@
 import { rtdb, firestore } from "./db";
+import { nanoid } from "nanoid";
 import * as express from "express";
 import * as process from "process";
-import { nanoid } from "nanoid";
 import * as cors from "cors";
+import * as path from "path";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ const roomsCollection = firestore.collection("rooms");
 app.get("/env", (req, res) => {
   res.json({
     environment: process.env.ENV,
+    back: process.env.BACKEND_URL,
   });
 });
 
@@ -148,15 +150,13 @@ app.delete("/deleteroom", (req, res) => {
     });
 });
 
-app.use(express.static("dist"));
+app.use(express.static(path.join(__dirname, "../dist")));
 
 app.get("*", (req, res) => {
-  res.sendFile(__dirname + "/dist/index.html");
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 // SETEA EL PUERTO
 app.listen(port, () => {
   console.log(`iniciado en http://localhost:${port}`);
-  console.log(process.env.ENV);
-  console.log(process.env.PORT);
 });
