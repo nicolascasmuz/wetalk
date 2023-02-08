@@ -4,8 +4,7 @@
     "target": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "strictNullChecks": false,
     "skipLibCheck": true
   },
-  "files": ["./server/index.ts", "./server/db.ts"]
+  "files": ["./server/index.ts"]
 }
