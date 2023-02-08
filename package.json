@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "source": "client/index.html",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:front": "parcel serve --port 7070 ./client/index.html",
