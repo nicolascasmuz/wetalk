@@ -17,7 +17,7 @@
     "nanoid": "^3.0.0",
     "nodemon": "^2.0.20",
     "package.json": "^2.0.1",
-    "parcel": "^2.0.0-rc.0",
+    "parcel": "^2.7.0",
     "uuid": "^9.0.0"
   },
   "scripts": {
