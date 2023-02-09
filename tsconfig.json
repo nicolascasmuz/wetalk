@@ -3,7 +3,8 @@
     "module": "CommonJS",
     "target": "ESNext",
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
   "files": ["./server/index.ts"]
 }
