@@ -1,6 +1,7 @@
-const API_BASE_URL = process.env.BACKEND_URL || "http://localhost:3000";
 import { rtdb } from "./rtdb";
 import { map } from "lodash";
+
+export const API_BASE_URL = process.env.BACKEND_URL || "http://localhost:3000";
 
 type msg = {
   from: string;
