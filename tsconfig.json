@@ -5,5 +5,5 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "files": ["./server/index.ts"]
+  "files": ["./server/index.ts", "./server/db.ts"]
 }
