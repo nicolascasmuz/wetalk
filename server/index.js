@@ -7,7 +7,7 @@ const process = require("process");
 const cors = require("cors");
 const path = require("path");
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 const usersCollection = db_1.firestore.collection("users");
@@ -142,6 +142,6 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 // SETEA EL PUERTO
-app.listen(port, () => {
-    console.log(`iniciado en http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`iniciado en http://localhost:${PORT}`);
 });

@@ -7,5 +7,5 @@ router.setRoutes([
   { path: "/", component: "signin-page" },
   { path: "/signin", component: "signin-page" },
   { path: "/chatroom", component: "chatroom-page" },
-  { path: "(.*)", redirect: "/home" },
+  { path: "(.*)", redirect: "/signin" },
 ]);

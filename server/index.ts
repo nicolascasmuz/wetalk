@@ -6,7 +6,7 @@ import * as cors from "cors";
 import * as path from "path";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -157,6 +157,6 @@ app.get("*", (req, res) => {
 });
 
 // SETEA EL PUERTO
-app.listen(port, () => {
-  console.log(`iniciado en http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`iniciado en http://localhost:${PORT}`);
 });
