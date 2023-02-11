@@ -1,5 +1,5 @@
 /* const API_BASE_URL = process.env.BACKEND_URL || "http://localhost:3000"; */
-import { API_BASE_URL } from "../state";
+import { api } from "../state";
 import { state } from "../state";
 import { Router } from "@vaadin/router";
 
@@ -57,7 +57,7 @@ customElements.define(
         if (selectEl == "existing-room") {
           /* state.setExistingRoomProp(inputRoomidVal); */
 
-          fetch(API_BASE_URL + "/room/" + inputRoomidVal).then((r) => {
+          fetch(api.url + "/room/" + inputRoomidVal).then((r) => {
             const contentLength = Number(r.headers.get("content-length"));
             if (contentLength != 0 && userEmail != "" && userName != "") {
               Router.go("/chatroom");

@@ -31,7 +31,9 @@ customElements.define(
         <header class="red-header"></header>
         <div class="chatroom-container">
           <h1 class="chatroom-title">Chat</h1>
-          <h2 class="chatroom-roomid">Room id: ${this.roomidText}</h1>
+          <h2 class="chatroom-roomid">Room id: ${
+            this.roomidText ? this.roomidText : "cargando..."
+          }</h1>
           <div class="chatroom-div">
             <section class="chat-box__section">
                 ${this.messages

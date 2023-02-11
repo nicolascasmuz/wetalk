@@ -1,7 +1,13 @@
 import { rtdb } from "./rtdb";
 import { map } from "lodash";
 
-export const API_BASE_URL = process.env.BACKEND_URL || "http://localhost:3000";
+const api: any = { url: "" };
+
+if (process.env.ENV == "development") {
+  api.url = "http://localhost:3000";
+} else if (process.env.ENV == "production") {
+  api.url = process.env.BACKEND_URL;
+}
 
 type msg = {
   from: string;
@@ -64,6 +70,7 @@ const state = {
 
     localStorage.setItem("state", JSON.stringify(newState));
     console.log("Soy el state, he cambiado: ", this.data);
+    console.log(api);
   },
   subscribe(callback: (any) => any) {
     this.listeners.push(callback);
@@ -80,7 +87,7 @@ const state = {
     const cs = this.getState();
 
     if (cs.email) {
-      fetch(API_BASE_URL + "/auth", {
+      fetch(api.url + "/auth", {
         method: "post",
         headers: {
           "content-type": "application/json",
@@ -118,7 +125,7 @@ const state = {
     const cs = this.getState();
 
     if (cs.userId && cs.existingRoom == false && !cs.roomId) {
-      fetch(API_BASE_URL + "/rooms", {
+      fetch(api.url + "/rooms", {
         method: "post",
         headers: {
           "content-type": "application/json",
@@ -140,7 +147,7 @@ const state = {
       (cs.userId && cs.existingRoom == true) ||
       (cs.userId && cs.existingRoom == false)
     ) {
-      fetch(API_BASE_URL + "/rooms/" + cs.roomId + "?userId=" + cs.userId)
+      fetch(api.url + "/rooms/" + cs.roomId + "?userId=" + cs.userId)
         .then((res) => {
           return res.json();
         })
@@ -176,7 +183,7 @@ const state = {
     const currentState = this.getState();
     const ownerName = currentState.fullname;
 
-    fetch(API_BASE_URL + "/messages", {
+    fetch(api.url + "/messages", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -195,4 +202,4 @@ const state = {
   },
 };
 
-export { state };
+export { state, api };
