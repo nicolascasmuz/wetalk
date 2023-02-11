@@ -54,7 +54,6 @@ const state = {
       cb();
     }
 
-    // save msgs in state
     const chatroomsRef = rtdb.ref("/rooms/" + newState.rtdbRoomId);
     chatroomsRef.on("value", (snapshot) => {
       const messagesFromServer = snapshot.val();
@@ -107,20 +106,6 @@ const state = {
       callback(true);
     }
   },
-  /* setExistingRoomProp(roomIdFromInput) {
-    const cs = this.getState();
-
-    fetch(API_BASE_URL + "/room/" + roomIdFromInput).then((r) => {
-      const contentLength = Number(r.headers.get("content-length"));
-      if (contentLength != 0) {
-        cs.roomId = roomIdFromInput;
-        cs.existingRoom = true;
-      } else {
-        cs.existingRoom = false;
-      }
-      this.setState(cs);
-    });
-  }, */
   askNewRoom(callback?) {
     const cs = this.getState();
 
