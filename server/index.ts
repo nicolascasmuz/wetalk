@@ -14,14 +14,6 @@ app.use(cors());
 const usersCollection = firestore.collection("users");
 const roomsCollection = firestore.collection("rooms");
 
-app.get("/env", (req, res) => {
-  res.json({
-    environment: process.env.ENV,
-    back: process.env.BACKEND_URL,
-  });
-});
-
-// post auth
 app.post("/auth", (req, res) => {
   const { email } = req.body;
   const { fullname } = req.body;
@@ -47,7 +39,6 @@ app.post("/auth", (req, res) => {
     });
 });
 
-// post rooms
 app.post("/rooms", (req, res) => {
   const { userId } = req.body;
 
@@ -83,7 +74,6 @@ app.post("/rooms", (req, res) => {
     });
 });
 
-// get rooms
 app.get("/rooms/:roomId", (req, res) => {
   const { userId } = req.query;
   const { roomId } = req.params;
@@ -108,7 +98,6 @@ app.get("/rooms/:roomId", (req, res) => {
     });
 });
 
-// get existing room
 app.get("/room/:roomId", (req, res) => {
   const { roomId } = req.params;
 
@@ -121,7 +110,6 @@ app.get("/room/:roomId", (req, res) => {
     });
 });
 
-// post messages
 app.post("/messages", (req, res) => {
   const { rtdbRoomId } = req.body;
   const { message } = req.body;
@@ -156,7 +144,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
-// SETEA EL PUERTO
 app.listen(PORT, () => {
   console.log(`iniciado en http://localhost:${PORT}`);
 });
