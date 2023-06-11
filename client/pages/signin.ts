@@ -1,4 +1,3 @@
-/* const API_BASE_URL = process.env.BACKEND_URL || "http://localhost:3000"; */
 import { api } from "../state";
 import { state } from "../state";
 import { Router } from "@vaadin/router";

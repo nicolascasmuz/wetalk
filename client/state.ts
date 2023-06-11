@@ -166,7 +166,6 @@ const state = {
   },
   pushMessage(message: string) {
     const currentState = this.getState();
-    const ownerName = currentState.fullname;
 
     fetch(api.url + "/messages", {
       method: "post",
@@ -175,7 +174,6 @@ const state = {
       },
       body: JSON.stringify({
         rtdbRoomId: currentState.rtdbRoomId,
-        owner: ownerName,
         message: message,
         from: currentState.fullname,
       }),

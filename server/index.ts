@@ -130,11 +130,23 @@ app.delete("/deleteroom", (req, res) => {
     .delete()
     .then(() => {
       res.json("Document successfully deleted!");
-      console.log("Document successfully deleted!");
     })
     .catch((error) => {
       res.json("Error removing document");
-      console.error("Error removing document: ", error);
+    });
+});
+
+app.delete("/deleteuser", (req, res) => {
+  const { userId } = req.body;
+
+  usersCollection
+    .doc(userId.toString())
+    .delete()
+    .then(() => {
+      res.json("Document successfully deleted!");
+    })
+    .catch((error) => {
+      res.json("Error removing document");
     });
 });
 
