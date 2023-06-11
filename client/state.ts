@@ -108,28 +108,22 @@ const state = {
   },
   async setExistingRoomProp(roomIdFromInput) {
     const cs = this.getState();
-
-    /* await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
-      const contentLength = Number(r.headers.get("content-length"));
-      if (contentLength != 0) {
-        cs.roomId = roomIdFromInput;
-        cs.existingRoom = true;
-      } else {
-        cs.existingRoom = false;
-      }
-      this.setState(cs);
-    }); */
+    var roomExistente;
 
     await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
       const contentLength = Number(r.headers.get("content-length"));
       if (contentLength != 0) {
         cs.roomId = roomIdFromInput;
-        cs.existingRoom = true;
+        roomExistente = true;
       } else {
-        cs.existingRoom = false;
+        roomExistente = false;
       }
-      this.setState(cs);
     });
+    if (roomExistente == true) {
+      return true;
+    } else if (roomExistente == false) {
+      return false;
+    }
   },
   askNewRoom(callback?) {
     const cs = this.getState();

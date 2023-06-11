@@ -54,12 +54,12 @@ customElements.define(
         const inputRoomidVal = e.target["roomid"].value;
 
         if (selectEl == "existing-room") {
-          state.setExistingRoomProp(inputRoomidVal).then(() => {
-            if (cs.existingRoom == true) {
+          state.setExistingRoomProp(inputRoomidVal).then((res) => {
+            if (res == true) {
               Router.go("/chatroom");
               cs.roomId = inputRoomidVal;
               cs.existingRoom = true;
-            } else if (cs.existingRoom == false) {
+            } else if (res == false) {
               existingRoomInput.style.border = "solid 2px red";
               cs.existingRoom = false;
             }
