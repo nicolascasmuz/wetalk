@@ -57,24 +57,10 @@ customElements.define(
           state.setExistingRoomProp(inputRoomidVal).then((res) => {
             if (res == true) {
               Router.go("/chatroom");
-              cs.roomId = inputRoomidVal;
-              cs.existingRoom = true;
             } else if (res == false) {
               existingRoomInput.style.border = "solid 2px red";
-              cs.existingRoom = false;
             }
           });
-          /* fetch(api.url + "/room/" + inputRoomidVal).then((r) => {
-            const contentLength = Number(r.headers.get("content-length"));
-            if (contentLength != 0 && userEmail != "" && userName != "") {
-              Router.go("/chatroom");
-              cs.roomId = inputRoomidVal;
-              cs.existingRoom = true;
-            } else if (contentLength == 0) {
-              existingRoomInput.style.border = "solid 2px red";
-              cs.existingRoom = false;
-            }
-          }); */
         }
 
         if (userEmail == "" && userName == "") {

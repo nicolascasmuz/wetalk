@@ -21,7 +21,6 @@ const state = {
     userId: "",
     roomId: "",
     rtdbRoomId: "",
-    existingRoom: false,
     messages: [],
   },
   listeners: [],
@@ -32,7 +31,6 @@ const state = {
       userId: "",
       roomId: "",
       rtdbRoomId: "",
-      existingRoom: "",
       messages: [],
     };
 
@@ -108,27 +106,27 @@ const state = {
   },
   async setExistingRoomProp(roomIdFromInput) {
     const cs = this.getState();
-    var roomExistente;
+    var existingRoom;
 
     await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
       const contentLength = Number(r.headers.get("content-length"));
       if (contentLength != 0) {
         cs.roomId = roomIdFromInput;
-        roomExistente = true;
+        existingRoom = true;
       } else {
-        roomExistente = false;
+        existingRoom = false;
       }
     });
-    if (roomExistente == true) {
+    if (existingRoom == true) {
       return true;
-    } else if (roomExistente == false) {
+    } else if (existingRoom == false) {
       return false;
     }
   },
   askNewRoom(callback?) {
     const cs = this.getState();
 
-    if (cs.userId && cs.existingRoom == false && !cs.roomId) {
+    if (cs.userId && !cs.roomId) {
       fetch(api.url + "/rooms", {
         method: "post",
         headers: {
@@ -147,10 +145,7 @@ const state = {
             callback();
           }
         });
-    } else if (
-      (cs.userId && cs.existingRoom == true) ||
-      (cs.userId && cs.existingRoom == false)
-    ) {
+    } else if (cs.userId) {
       fetch(api.url + "/rooms/" + cs.roomId + "?userId=" + cs.userId)
         .then((res) => {
           return res.json();
