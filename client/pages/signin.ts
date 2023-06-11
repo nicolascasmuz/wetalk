@@ -56,7 +56,9 @@ customElements.define(
         if (selectEl == "existing-room") {
           /* state.setExistingRoomProp(inputRoomidVal); */
 
-          fetch(api.url + "/room/" + inputRoomidVal).then((r) => {
+          fetch(
+            "https://wetalk-ctom.onrender.com" + "/room/" + inputRoomidVal
+          ).then((r) => {
             const contentLength = Number(r.headers.get("content-length"));
             if (contentLength != 0 && userEmail != "" && userName != "") {
               Router.go("/chatroom");
