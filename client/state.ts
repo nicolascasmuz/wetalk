@@ -106,6 +106,31 @@ const state = {
       callback(true);
     }
   },
+  async setExistingRoomProp(roomIdFromInput) {
+    const cs = this.getState();
+
+    /* await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
+      const contentLength = Number(r.headers.get("content-length"));
+      if (contentLength != 0) {
+        cs.roomId = roomIdFromInput;
+        cs.existingRoom = true;
+      } else {
+        cs.existingRoom = false;
+      }
+      this.setState(cs);
+    }); */
+
+    await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
+      const contentLength = Number(r.headers.get("content-length"));
+      if (contentLength != 0) {
+        cs.roomId = roomIdFromInput;
+        cs.existingRoom = true;
+      } else {
+        cs.existingRoom = false;
+      }
+      this.setState(cs);
+    });
+  },
   askNewRoom(callback?) {
     const cs = this.getState();
 

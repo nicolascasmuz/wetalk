@@ -54,11 +54,17 @@ customElements.define(
         const inputRoomidVal = e.target["roomid"].value;
 
         if (selectEl == "existing-room") {
-          /* state.setExistingRoomProp(inputRoomidVal); */
-
-          fetch(
-            "https://wetalk-ctom.onrender.com" + "/room/" + inputRoomidVal
-          ).then((r) => {
+          state.setExistingRoomProp(inputRoomidVal).then(() => {
+            if (cs.existingRoom == true) {
+              Router.go("/chatroom");
+              cs.roomId = inputRoomidVal;
+              cs.existingRoom = true;
+            } else if (cs.existingRoom == false) {
+              existingRoomInput.style.border = "solid 2px red";
+              cs.existingRoom = false;
+            }
+          });
+          /* fetch(api.url + "/room/" + inputRoomidVal).then((r) => {
             const contentLength = Number(r.headers.get("content-length"));
             if (contentLength != 0 && userEmail != "" && userName != "") {
               Router.go("/chatroom");
@@ -68,7 +74,7 @@ customElements.define(
               existingRoomInput.style.border = "solid 2px red";
               cs.existingRoom = false;
             }
-          });
+          }); */
         }
 
         if (userEmail == "" && userName == "") {
