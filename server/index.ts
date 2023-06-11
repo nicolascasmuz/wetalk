@@ -98,16 +98,18 @@ app.get("/rooms/:roomId", (req, res) => {
     });
 });
 
-app.get("/room/:roomId", (req, res) => {
+app.get("/room/:roomId", async (req, res) => {
   const { roomId } = req.params;
 
-  roomsCollection
-    .doc(roomId.toString())
-    .get()
-    .then((roomData) => {
-      const data = roomData.data();
-      res.json(data);
-    });
+  const roomDoc = await roomsCollection.doc(roomId.toString()).get();
+
+  if (!roomDoc.exists) {
+    res.status(404).json({ error: "Room not found" });
+  } else {
+    const roomData = roomDoc.data();
+
+    res.status(200).json({ rtdbRoomId: roomData?.rtdbRoomId });
+  }
 });
 
 app.post("/messages", (req, res) => {

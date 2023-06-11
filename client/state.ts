@@ -109,19 +109,12 @@ const state = {
     var existingRoom;
 
     await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
-      const contentLength = Number(r.headers.get("content-length"));
-      if (contentLength != 0) {
-        cs.roomId = roomIdFromInput;
-        existingRoom = true;
-      } else {
-        existingRoom = false;
-      }
+      cs.roomId = roomIdFromInput;
+      existingRoom = r;
     });
-    if (existingRoom == true) {
-      return true;
-    } else if (existingRoom == false) {
-      return false;
-    }
+
+    this.setState(cs);
+    return existingRoom;
   },
   askNewRoom(callback?) {
     const cs = this.getState();

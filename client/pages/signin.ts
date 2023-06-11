@@ -55,9 +55,9 @@ customElements.define(
 
         if (selectEl == "existing-room") {
           state.setExistingRoomProp(inputRoomidVal).then((res) => {
-            if (res == true) {
+            if (res.statusText == "OK") {
               Router.go("/chatroom");
-            } else if (res == false) {
+            } else {
               existingRoomInput.style.border = "solid 2px red";
             }
           });
