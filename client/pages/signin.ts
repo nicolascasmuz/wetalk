@@ -1,7 +1,7 @@
 import { api } from "../state";
 import { state } from "../state";
 import { Router } from "@vaadin/router";
-const headerLogo = require("../resources/logo-wetalk.png");
+const headerLogo = require("url:../resources/logo-wetalk.png");
 
 customElements.define(
   "signin-page",
