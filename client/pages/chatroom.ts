@@ -1,5 +1,5 @@
 import { state } from "../state";
-const headerLogo = require("../resources/logo-wetalk.png");
+const headerLogo = require("url:../resources/logo-wetalk.png");
 
 customElements.define(
   "chatroom-page",
