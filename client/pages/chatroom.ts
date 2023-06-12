@@ -1,4 +1,5 @@
 import { state } from "../state";
+const headerLogo = require("../resources/logo-wetalk.png");
 
 customElements.define(
   "chatroom-page",
@@ -28,7 +29,9 @@ customElements.define(
       const currentState = state.getState();
 
       this.innerHTML = `
-        <header class="red-header"></header>
+        <header class="red-header">
+          <img class="header-logo" src=${headerLogo} alt="header-logo" />
+        </header>
         <div class="chatroom-container">
           <h1 class="chatroom-title">Chat</h1>
           <h2 class="chatroom-roomid">Room id: ${
@@ -57,19 +60,29 @@ customElements.define(
       const style = document.createElement("style");
       style.innerHTML = `
             .red-header {
-            background-color: #FF8282;
-            height: 60px;
+              display: flex;
+              align-items: center;
+              background-color: #fafafa;
+              width: 100%;
+              height: 75px;
+            }
+            .header-logo {
+              height: 65px;
+              margin-left: 25px;
             }
             .chatroom-container {
-            display: grid;
-            justify-content: center;
-            margin: 25px 0;
+              display: grid;
+              justify-content: center;
+              justify-items: start;
+              align-content: center;
+              background-color: #ffd7aa;
+              min-height: calc(100vh - 75px);
             }
             .chatroom-title {
             font-family: 'Roboto', cursive;
             font-size: 52px;
             font-weight: 700;
-            margin: 0;
+            margin: 25px 0 0 0;
             }
             .chatroom-roomid {
             font-family: 'Roboto', cursive;
@@ -91,9 +104,10 @@ customElements.define(
             width: 312px;
             min-height: 312px;
             max-height: 312px;
-            border: solid 4px #9CBBE9;
+            border: solid 4px #ff7979;
             border-radius: 4px;
             overflow: auto;
+            background-color: #fafafa;
             padding: 10px 6px 10px 6px;
             }
             .user1__message-box {
@@ -104,7 +118,7 @@ customElements.define(
             width: fit-content;
             max-width: 250px;
             height: fit-content;
-            background-color: #78e08f;
+            background-color: #ffbe76;
             border-radius: 4px;
             padding: 6px 6px 6px 6px;
             }
@@ -126,7 +140,7 @@ customElements.define(
             width: fit-content;
             max-width: 250px;
             height: fit-content;
-            background-color: #CAD3C8;
+            background-color: #ff7979;
             border-radius: 4px;
             padding: 6px 6px 6px 6px;
             }
@@ -155,7 +169,7 @@ customElements.define(
             font-size: 25px;
             }
             .chatroom-form__button {
-            background-color: #9CBBE9;
+            background-color: #ff7979;
             border: none;
             border-radius: 4px;
             color: #000000;
@@ -163,6 +177,7 @@ customElements.define(
             font-size: 22px;
             min-width: 312px;
             min-height: 55px;
+            margin: 0 0 25px 0;
             }
               `;
 

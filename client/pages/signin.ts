@@ -1,6 +1,7 @@
 import { api } from "../state";
 import { state } from "../state";
 import { Router } from "@vaadin/router";
+const headerLogo = require("../resources/logo-wetalk.png");
 
 customElements.define(
   "signin-page",
@@ -115,7 +116,9 @@ customElements.define(
     }
     render() {
       this.innerHTML = `
-            <header class="red-header"></header>
+            <header class="red-header">
+              <img class="header-logo" src=${headerLogo} alt="header-logo" />
+            </header>
             <div class="signin-container">
               <h1 class="signin-title">Bienvenido</h1>
               <form class="signin-form__form">
@@ -142,14 +145,23 @@ customElements.define(
       const style = document.createElement("style");
       style.innerHTML = `
             .red-header {
-            background-color: #FF8282;
+            display: flex;
+            align-items: center;
+            background-color: #fafafa;
             width: 100%;
-            height: 60px;
+            height: 75px;
+            }
+            .header-logo {
+              height: 65px;
+              margin-left: 25px;
             }
             .signin-container {
             display: grid;
             justify-content: center;
-            margin: 25px 0;
+            justify-items: start;
+            align-content: center;
+            background-color: #ffd7aa;
+            height: calc(100vh - 75px);
             }
             .signin-title {
             font-family: 'Roboto', cursive;
@@ -247,7 +259,7 @@ customElements.define(
             font-size: 25px;
             }
             .signin-form__button {
-            background-color: #9CBBE9;
+            background-color: #ff7979;
             border: none;
             border-radius: 4px;
             color: #000000;
