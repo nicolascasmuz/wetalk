@@ -1,7 +1,7 @@
 import { rtdb } from "./rtdb";
 import { map } from "lodash";
 
-const api: any = "https://wetalk-ctom.onrender.com";
+const api: any = { url: "https://wetalk-ctom.onrender.com" };
 
 /* if (process.env.ENV == "development") {
   api.url = "http://localhost:3000";
