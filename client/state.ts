@@ -1,13 +1,13 @@
 import { rtdb } from "./rtdb";
 import { map } from "lodash";
 
-const api: any = { url: "" };
+const api: any = "https://wetalk-ctom.onrender.com";
 
-if (process.env.ENV == "development") {
+/* if (process.env.ENV == "development") {
   api.url = "http://localhost:3000";
 } else if (process.env.ENV == "production") {
   api.url = process.env.BACKEND_URL;
-}
+} */
 
 type msg = {
   from: string;
