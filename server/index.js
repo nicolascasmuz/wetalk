@@ -12,13 +12,6 @@ app.use(express.json());
 app.use(cors());
 const usersCollection = db_1.firestore.collection("users");
 const roomsCollection = db_1.firestore.collection("rooms");
-app.get("/env", (req, res) => {
-    res.json({
-        environment: process.env.ENV,
-        back: process.env.BACKEND_URL,
-    });
-});
-// post auth
 app.post("/auth", (req, res) => {
     const { email } = req.body;
     const { fullname } = req.body;
@@ -43,7 +36,6 @@ app.post("/auth", (req, res) => {
         }
     });
 });
-// post rooms
 app.post("/rooms", (req, res) => {
     const { userId } = req.body;
     usersCollection
@@ -78,7 +70,6 @@ app.post("/rooms", (req, res) => {
         }
     });
 });
-// get rooms
 app.get("/rooms/:roomId", (req, res) => {
     const { userId } = req.query;
     const { roomId } = req.params;
@@ -102,18 +93,17 @@ app.get("/rooms/:roomId", (req, res) => {
         }
     });
 });
-// get existing room
-app.get("/room/:roomId", (req, res) => {
+app.get("/room/:roomId", async (req, res) => {
     const { roomId } = req.params;
-    roomsCollection
-        .doc(roomId.toString())
-        .get()
-        .then((roomData) => {
-        const data = roomData.data();
-        res.json(data);
-    });
+    const roomDoc = await roomsCollection.doc(roomId.toString()).get();
+    if (!roomDoc.exists) {
+        res.status(404).json({ error: "Room not found" });
+    }
+    else {
+        const roomData = roomDoc.data();
+        res.status(200).json({ rtdbRoomId: roomData?.rtdbRoomId });
+    }
 });
-// post messages
 app.post("/messages", (req, res) => {
     const { rtdbRoomId } = req.body;
     const { message } = req.body;
@@ -130,18 +120,27 @@ app.delete("/deleteroom", (req, res) => {
         .delete()
         .then(() => {
         res.json("Document successfully deleted!");
-        console.log("Document successfully deleted!");
     })
         .catch((error) => {
         res.json("Error removing document");
-        console.error("Error removing document: ", error);
+    });
+});
+app.delete("/deleteuser", (req, res) => {
+    const { userId } = req.body;
+    usersCollection
+        .doc(userId.toString())
+        .delete()
+        .then(() => {
+        res.json("Document successfully deleted!");
+    })
+        .catch((error) => {
+        res.json("Error removing document");
     });
 });
 app.use(express.static(path.join(__dirname, "../dist")));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
-// SETEA EL PUERTO
 app.listen(PORT, () => {
     console.log(`iniciado en http://localhost:${PORT}`);
 });

@@ -109,8 +109,10 @@ const state = {
     var existingRoom;
 
     await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
-      cs.roomId = roomIdFromInput;
-      existingRoom = r;
+      if (r.status === 200) {
+        cs.roomId = roomIdFromInput;
+        existingRoom = r;
+      }
     });
 
     this.setState(cs);
