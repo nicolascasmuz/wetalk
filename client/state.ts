@@ -108,20 +108,10 @@ const state = {
     const cs = this.getState();
     var existingRoom;
 
-    try {
-      const response = await fetch(api.url + "/room/" + roomIdFromInput);
-      if (response.ok) {
-        cs.roomId = roomIdFromInput;
-        existingRoom = response;
-        console.log("response: ", response);
-      } else {
-        // Manejar errores de respuesta no exitosa
-        console.error("Error al hacer la solicitud: ", response.status);
-      }
-    } catch (error) {
-      // Manejar errores de red u otros errores de fetch
-      console.error("Error al hacer la solicitud: ", error);
-    }
+    await fetch(api.url + "/room/" + roomIdFromInput).then((r) => {
+      cs.roomId = roomIdFromInput;
+      existingRoom = r;
+    });
 
     this.setState(cs);
     return existingRoom;
