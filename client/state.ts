@@ -116,11 +116,11 @@ const state = {
         console.log("response: ", response);
       } else {
         // Manejar errores de respuesta no exitosa
-        console.error("Error al hacer la solicitud:", response.status);
+        console.error("Error al hacer la solicitud: ", response.status);
       }
     } catch (error) {
       // Manejar errores de red u otros errores de fetch
-      console.error("Error al hacer la solicitud:", error);
+      console.error("Error al hacer la solicitud: ", error);
     }
 
     this.setState(cs);
