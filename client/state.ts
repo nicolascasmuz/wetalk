@@ -113,6 +113,7 @@ const state = {
       if (response.ok) {
         cs.roomId = roomIdFromInput;
         existingRoom = response;
+        console.error("Solicitud exitosa");
       } else {
         // Manejar errores de respuesta no exitosa
         console.error("Error al hacer la solicitud:", response.status);
